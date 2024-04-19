@@ -1,0 +1,9 @@
+{
+  "app": {
+    "title": "My Super App (FR)"
+  },
+  "article_generation": {
+    "title_form": "Rédaction d'Article",
+    "sub_title_form": "Explication de ce qui est possible et comment cela fonctionne"
+  }
+}

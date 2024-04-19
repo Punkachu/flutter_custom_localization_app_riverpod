@@ -1,0 +1,9 @@
+{
+  "app": {
+    "title": "My Super App"
+  },
+  "article_generation": {
+    "title_form": "Article Writing",
+    "sub_title_form": "Explanation about how it works and what’s possible"
+  }
+}
