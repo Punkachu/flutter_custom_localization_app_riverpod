@@ -15,6 +15,8 @@ dependencies:
 
   cupertino_icons: ^1.0.2
 
+  shared_preferences: ^2.2.3
+
   # State management
   flutter_riverpod: ^2.5.1
   riverpod_annotation: ^2.3.5
