@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String _storageKey = "demo_localization_app_";
-const String _kDefaultLanguage = "en";
 
 Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
 Preferences preferences = Preferences();
 
 class Preferences {
+  late final String defaultLang;
+
   /// Generic routine to fetch a preference
   Future<String> _getApplicationSavedInformation(String name) async {
     final SharedPreferences prefs = await _prefs;
@@ -34,7 +35,10 @@ class Preferences {
     return _setApplicationSavedInformation('language', lang);
   }
 
-  String get defaultLanguage => _kDefaultLanguage;
+  String get defaultLanguage => defaultLang;
+
+  /// ⚠️🚨 Must be called on top of App initialization
+  set defaultLanguage(String lang) => defaultLang = lang;
 
   // ------------------ SINGLETON -----------------------
   static final Preferences _preferences = Preferences._internal();
