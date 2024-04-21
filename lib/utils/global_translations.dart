@@ -8,9 +8,16 @@ import 'package:internationalization/utils/preferences.dart';
 import 'package:intl/intl.dart';
 
 const List<String> _kSupportedLanguages = ["en", "fr"];
+const String _kDefaultLanguage = "en";
+
 const String _kSLocalFilePath = "assets/locale/locale_";
 
+late Preferences preferences;
+
 class GlobalTranslations {
+  final String defaultLanguage;
+  final List<String> supportedLanguages;
+
   Locale? _locale;
   Map? picklists;
   Map<dynamic, dynamic>? _localizedValues;
@@ -20,7 +27,7 @@ class GlobalTranslations {
   /// Returns the list of supported locales
   ///
   Iterable<Locale> supportedLocales() =>
-      _kSupportedLanguages.map<Locale>((lang) => Locale(lang, ''));
+      supportedLanguages.map<Locale>((lang) => Locale(lang, ''));
 
   ///
   /// Return the translation that corresponds to the [key]
@@ -191,7 +198,7 @@ class GlobalTranslations {
       }
     }
 
-    if (!_kSupportedLanguages.contains(language)) {
+    if (!supportedLanguages.contains(language)) {
       language = "";
     }
 
@@ -262,15 +269,29 @@ class GlobalTranslations {
   ///
   /// Singleton Factory
   ///
-  static final GlobalTranslations _translations =
-      GlobalTranslations._internal();
 
-  factory GlobalTranslations() => _translations;
+  // Private constructor
+  GlobalTranslations._(this.defaultLanguage, this.supportedLanguages);
 
-  GlobalTranslations._internal();
+  // Singleton instance
+  static GlobalTranslations? _instance;
+
+  factory GlobalTranslations({
+    required String defaultLanguage,
+    required List<String> supportedLanguages,
+  }) {
+    preferences = Preferences(defaultLanguage: defaultLanguage);
+    _instance ??= GlobalTranslations._(defaultLanguage, supportedLanguages);
+    // return GlobalTranslations instance
+    return _instance!;
+  }
 }
 
-GlobalTranslations allTranslations = GlobalTranslations();
+/// TODO 📝: Export into a specific provider
+GlobalTranslations allTranslations = GlobalTranslations(
+  defaultLanguage: _kDefaultLanguage,
+  supportedLanguages: _kSupportedLanguages,
+);
 
 enum GlobalTranslationsGender {
   male,
