@@ -1,14 +1,10 @@
-import 'package:flutter/material.dart';
-
 import '../../../utils/global_translations.dart';
-import '../../../utils/preferences.dart';
+import '../../preferences/preferences.dart';
 import '../domain/locale_app.dart';
 
 class InternationalizationRepository {
-  const InternationalizationRepository(
-      {required this.currentLocale, required this.currentLanguage});
-  final Locale currentLocale;
-  final String currentLanguage;
+  const InternationalizationRepository({required this.preferences});
+  final Preferences preferences;
 
   Future<LocaleApp> setNewLanguage(String newLanguage) async {
     // Save the selected language as a user preference
@@ -19,4 +15,7 @@ class InternationalizationRepository {
 
     return LocaleApp(language: newLanguage, locale: allTranslations.locale);
   }
+
+  Future<String> currentLanguage() async =>
+      await allTranslations.currentLanguage;
 }

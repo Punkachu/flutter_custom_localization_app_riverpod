@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const String _storageKey = "demo_localization_app_";
 
+/// TODO: add an abstract class for each network and local implementation
 class Preferences {
   final String defaultLanguage;
   late SharedPreferences _prefs;

@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:internationalization/utils/preferences.dart';
+import 'package:internationalization/core/preferences/preferences.dart';
 import 'package:intl/intl.dart';
 
 const List<String> _kSupportedLanguages = ["en", "fr"];
